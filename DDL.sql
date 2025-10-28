@@ -5,7 +5,7 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
--- Drop tables in correct order (children first)
+-- Drop existing tables to avoid conflicts
 DROP TABLE IF EXISTS WatchedMovies;
 DROP TABLE IF EXISTS SavedMovies;
 DROP TABLE IF EXISTS Movies;
@@ -21,7 +21,7 @@ CREATE TABLE Users (
 );
 
 -- Rebeca's Tables
--- Create Movies table (must be created BEFORE junction tables)
+-- Create Movies table
 CREATE TABLE Movies (
     movieID INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(255) NOT NULL,

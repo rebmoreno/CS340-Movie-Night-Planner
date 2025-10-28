@@ -1,84 +1,81 @@
--- Tables and Values for Movie Database
+-- Group 64: Rebeca Moreno Rodriguez, Prisha Velhal
+-- Movie Night Planner Management System
+-- CS340 Project Step 2 - DDL
+
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
--- Prisha's Movie Database DDL
-CREATE OR REPLACE TABLE Users (
-    userId INT AUTO_INCREMENT UNIQUE NOT NULL,
-    name varchar(100),
-    email varchar(255) NOT NULL UNIQUE,
-    PRIMARY KEY (userId)
+-- Drop tables in correct order (children first)
+DROP TABLE IF EXISTS WatchedMovies;
+DROP TABLE IF EXISTS SavedMovies;
+DROP TABLE IF EXISTS Movies;
+DROP TABLE IF EXISTS Users;
+
+-- Prisha's Tables
+-- Create Users table
+CREATE TABLE Users (
+    userID INT AUTO_INCREMENT NOT NULL,
+    name VARCHAR(100),
+    email VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (userID)
 );
 
-CREATE OR REPLACE TABLE SavedMovies (
-    userId int NOT NULL,
-    movieId int NOT NULL,
-    saved_date DATE DEFAULT CURRENT_DATE NOT NULL,
-    PRIMARY KEY (userId, movieId),
-    FOREIGN KEY (userId) REFERENCES Users(userId),
-    FOREIGN KEY (movieId) REFERENCES Movies(movieId)
-);
-
-INSERT INTO Users (
-    name,
-    email
-) 
-VALUES
-(
-    'John Smith',
-    'JoSmith@gmail.com'
-),
-(
-    'Jane Doe',
-    'JaDoe@gmail.com'
-),
-(
-    'Scarlett Johanson',
-    'ScarJo@gmail.com'
-);
-
-INSERT INTO SavedMovies (
-    saved_date
-)
-VALUES
-(
-    "2025-03-05"
-),
-(
-    "2025-05-10"
-),
-(
-    "2025-01-05"
-);
-
--- Rebeca's Movie Database DDL
-CREATE OR REPLACE TABLE Movies (
-    movieId INT AUTO_INCREMENT UNIQUE NOT NULL,
+-- Rebeca's Tables
+-- Create Movies table (must be created BEFORE junction tables)
+CREATE TABLE Movies (
+    movieID INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(255) NOT NULL,
     genre VARCHAR(100) NULL,
     release_date DATE NULL,
     lead_actor VARCHAR(150) NULL,
     streaming_platform VARCHAR(100) NULL,
-    PRIMARY KEY (movieId)
+    PRIMARY KEY (movieID)
 );
 
-CREATE OR REPLACE TABLE WatchedMovies (
-    userId INT NOT NULL,
-    movieId INT NOT NULL,
+-- Create SavedMovies junction table
+CREATE TABLE SavedMovies (
+    userID INT NOT NULL,
+    movieID INT NOT NULL,
+    saved_date DATE NOT NULL DEFAULT (CURRENT_DATE),
+    PRIMARY KEY (userID, movieID),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+        ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Create WatchedMovies junction table
+CREATE TABLE WatchedMovies (
+    userID INT NOT NULL,
+    movieID INT NOT NULL,
     watched_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    PRIMARY KEY (userId, movieId),
-    FOREIGN KEY (movieId) REFERENCES Movies(movieId)
-    FOREIGN KEY (userId) REFERENCES Users(userId),
+    PRIMARY KEY (userID, movieID),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform)
-VALUES
+-- Insert sample Users (Prisha's data)
+INSERT INTO Users (name, email) VALUES
+('John Smith', 'JoSmith@gmail.com'),
+('Jane Doe', 'JaDoe@gmail.com'),
+('Scarlett Johansson', 'ScarJo@gmail.com');
+
+-- Insert sample Movies (Rebeca's data)
+INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform) VALUES
 ('A House of Dynamite', 'Thriller', '2025-09-02', 'Idris Elba', 'Netflix'),
-('Wicked', 'Fantasy', '2024-11-22', 'Cythia Erivo', 'Prime Video'),
+('Wicked', 'Fantasy', '2024-11-22', 'Cynthia Erivo', 'Prime Video'),
 ('The Night Before Christmas', 'Fantasy', '1993-10-29', 'Bing Crosby', 'Disney+');
 
-INSERT INTO WatchedMovies (userId, movieId, watched_date)
-VALUES
+-- Insert sample SavedMovies (Prisha's data)
+INSERT INTO SavedMovies (userID, movieID, saved_date) VALUES
+(1, 2, '2025-03-05'),
+(2, 2, '2025-05-10'),
+(1, 3, '2025-01-05');
+
+-- Insert sample WatchedMovies (Rebeca's data)
+INSERT INTO WatchedMovies (userID, movieID, watched_date) VALUES
 (1, 1, '2025-09-10'),
 (2, 1, '2025-09-15'),
 (2, 3, '2023-12-25');

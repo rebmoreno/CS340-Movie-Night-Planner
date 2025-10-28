@@ -53,22 +53,22 @@ VALUES
 
 -- Rebeca's Movie Database DDL
 CREATE OR REPLACE TABLE Movies (
-    movieID INT AUTO_INCREMENT UNIQUE NOT NULL,
+    movieId INT AUTO_INCREMENT UNIQUE NOT NULL,
     title VARCHAR(255) NOT NULL,
     genre VARCHAR(100) NULL,
     release_date DATE NULL,
     lead_actor VARCHAR(150) NULL,
     streaming_platform VARCHAR(100) NULL,
-    PRIMARY KEY (movieID)
+    PRIMARY KEY (movieId)
 );
 
 CREATE OR REPLACE TABLE WatchedMovies (
-    userID INT NOT NULL,
-    movieID INT NOT NULL,
+    userId INT NOT NULL,
+    movieId INT NOT NULL,
     watched_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    PRIMARY KEY (userID, movieID),
-    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
-    FOREIGN KEY (userID) REFERENCES Users(userID),
+    PRIMARY KEY (userId, movieId),
+    FOREIGN KEY (movieId) REFERENCES Movies(movieId)
+    FOREIGN KEY (userId) REFERENCES Users(userId),
 );
 
 INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform)
@@ -77,7 +77,7 @@ VALUES
 ('Wicked', 'Fantasy', '2024-11-22', 'Cythia Erivo', 'Prime Video'),
 ('The Night Before Christmas', 'Fantasy', '1993-10-29', 'Bing Crosby', 'Disney+');
 
-INSERT INTO WatchedMovies (userID, movieID, watched_date)
+INSERT INTO WatchedMovies (userId, movieId, watched_date)
 VALUES
 (1, 1, '2025-09-10'),
 (2, 1, '2025-09-15'),

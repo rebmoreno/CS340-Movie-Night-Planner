@@ -14,45 +14,45 @@ DROP TABLE IF EXISTS Users;
 -- Prisha's Tables
 -- Create Users table
 CREATE TABLE Users (
-    userID INT AUTO_INCREMENT NOT NULL,
+    userId INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(100),
     email VARCHAR(255) NOT NULL UNIQUE,
-    PRIMARY KEY (userID)
+    PRIMARY KEY (userId)
 );
 
 -- Rebeca's Tables
 -- Create Movies table
 CREATE TABLE Movies (
-    movieID INT AUTO_INCREMENT NOT NULL,
+    movieId INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(255) NOT NULL,
     genre VARCHAR(100) NULL,
     release_date DATE NULL,
     lead_actor VARCHAR(150) NULL,
     streaming_platform VARCHAR(100) NULL,
-    PRIMARY KEY (movieID)
+    PRIMARY KEY (movieId)
 );
 
 -- Create SavedMovies junction table
 CREATE TABLE SavedMovies (
-    userID INT NOT NULL,
-    movieID INT NOT NULL,
+    userId INT NOT NULL,
+    movieId INT NOT NULL,
     saved_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    PRIMARY KEY (userID, movieID),
-    FOREIGN KEY (userID) REFERENCES Users(userID)
+    PRIMARY KEY (userId, movieId),
+    FOREIGN KEY (userId) REFERENCES Users(userId)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+    FOREIGN KEY (movieId) REFERENCES Movies(movieId)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Create WatchedMovies junction table
 CREATE TABLE WatchedMovies (
-    userID INT NOT NULL,
-    movieID INT NOT NULL,
+    userId INT NOT NULL,
+    movieId INT NOT NULL,
     watched_date DATE NOT NULL DEFAULT (CURRENT_DATE),
-    PRIMARY KEY (userID, movieID),
-    FOREIGN KEY (userID) REFERENCES Users(userID)
+    PRIMARY KEY (userId, movieId),
+    FOREIGN KEY (userId) REFERENCES Users(userId)
         ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (movieID) REFERENCES Movies(movieID)
+    FOREIGN KEY (movieId) REFERENCES Movies(movieId)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -69,13 +69,13 @@ INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform) 
 ('The Night Before Christmas', 'Fantasy', '1993-10-29', 'Bing Crosby', 'Disney+');
 
 -- Insert sample SavedMovies (Prisha's data)
-INSERT INTO SavedMovies (userID, movieID, saved_date) VALUES
+INSERT INTO SavedMovies (userId, movieId, saved_date) VALUES
 (1, 2, '2025-03-05'),
 (2, 2, '2025-05-10'),
 (1, 3, '2025-01-05');
 
 -- Insert sample WatchedMovies (Rebeca's data)
-INSERT INTO WatchedMovies (userID, movieID, watched_date) VALUES
+INSERT INTO WatchedMovies (userId, movieId, watched_date) VALUES
 (1, 1, '2025-09-10'),
 (2, 1, '2025-09-15'),
 (2, 3, '2023-12-25');

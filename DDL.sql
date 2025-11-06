@@ -32,6 +32,7 @@ CREATE TABLE Movies (
     PRIMARY KEY (movieId)
 );
 
+--Prisha's Table
 -- Create SavedMovies junction table
 CREATE TABLE SavedMovies (
     userId INT NOT NULL,
@@ -44,6 +45,7 @@ CREATE TABLE SavedMovies (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+--Rebeca's Table
 -- Create WatchedMovies junction table
 CREATE TABLE WatchedMovies (
     userId INT NOT NULL,

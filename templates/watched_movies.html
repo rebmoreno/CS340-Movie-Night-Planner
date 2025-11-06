@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watched Movies</title>
+</head>
+<body>    
+    <h1>Watched Movies</h1>
+        <nav>
+            <a href="index.html">Home</a> |
+            <a href="users.html">Users</a> |
+            <a href="movies.html">Movies</a> |
+            <a href="saved_movies.html">Saved Movies</a> |
+            <a href="watched_movies.html">Watched Movies</a>
+        </nav>
+    <hr>
+    
+    <h2>All Watched Movies</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Movie Title</th>
+                <th>Genre</th>
+                <th>Streaming Platform</th>
+                <th>Watched Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Smith</td>
+                <td>A House of Dynamite</td>
+                <td>Thriller</td>
+                <td>Netflix</td>
+                <td>2025-09-10</td>
+            </tr>
+            <tr>
+                <td>Jane Doe</td>
+                <td>A House of Dynamite</td>
+                <td>Thriller</td>
+                <td>Netflix</td>
+                <td>2025-09-15</td>
+            </tr>
+            <tr>
+                <td>Jane Doe</td>
+                <td>The Night Before Christmas</td>
+                <td>Fantasy</td>
+                <td>Disney+</td>
+                <td>2023-12-25</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2>Mark Movie as Watched</h2>
+    <form action="/add-watched-movie" method="POST">
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">1 - John Smith</option>
+            <option value="2">2 - Jane Doe</option>
+            <option value="3">3 - Scarlett Johansson</option>
+        </select>
+        <br><br>
+        
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">1 - A House of Dynamite (Thriller)</option>
+            <option value="2">2 - Wicked (Fantasy)</option>
+            <option value="3">3 - The Night Before Christmas (Fantasy)</option>
+        </select>
+        <br><br>
+        
+        <label>Watched Date (optional, defaults to today):</label>
+        <input type="date" name="watched_date">
+        <br><br>
+        
+        <button type="submit">Mark as Watched</button>
+    </form>
+    
+    <h2>Update Watched Date</h2>
+    <form action="/update-watched-movie" method="POST">
+        <label>User ID:</label>
+        <input type="number" name="userId" required>
+        <br><br>
+        
+        <label>Movie ID:</label>
+        <input type="number" name="movieId" required>
+        <br><br>
+        
+        <label>New Watched Date:</label>
+        <input type="date" name="watched_date" required>
+        <br><br>
+        
+        <button type="submit">Update Watched Date</button>
+    </form>
+    
+    <h2>Remove from Watch History</h2>
+    <form action="/delete-watched-movie" method="POST">
+        <label>User ID:</label>
+        <input type="number" name="userId" required>
+        <br><br>
+        
+        <label>Movie ID:</label>
+        <input type="number" name="movieId" required>
+        <br><br>
+        
+        <button type="submit">Remove from Watch History</button>
+    </form>
+</body>
+</html>

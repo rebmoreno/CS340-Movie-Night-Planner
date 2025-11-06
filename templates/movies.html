@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Night Planner</title>
+</head>
+<body>
+    <h1>Movie Night Planner Management System</h1>
+
+    </nav>
+        <a href="/">Home</a> |
+        <a href="/users">Users</a> |
+        <a href="/movies">Movies</a> |
+        <a href="/saved-movies">Saved Movies</a> |
+        <a href="/watched-movies">Watched Movies</a>
+    </nav>
+
+    <main>
+        <h2>Movies</h2>
+        <table id="movies">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Release Date</th>
+                    <th>Lead Actor</th>
+                    <th>Streaming Platform/th>
+                </tr>
+            </thead>
+            <!-- table for movies data -->
+                <tr>
+                    <th>A House of Dynamite</th>
+                    <th>Thriller</th>
+                    <th>2025-09-02</th>
+                    <th>Idris Elba</th>
+                    <th>Netflix</th>
+                    <button type="button">Delete</button>
+                </tr>
+                <tr>
+                    <th>Wicked</th>
+                    <th>Fantasy</th>
+                    <th>2024-11-22</th>
+                    <th>Cynthia Ervio</th>
+                    <th>Prime Video</th>
+                    <button type="button">Delete</button>
+                </tr>
+                <tr>
+                    <th>The Night Before Christmas</th>
+                    <th>Fantasy</th>
+                    <th>1993-10-29</th>
+                    <th>Bing Crosby</th>
+                    <th>Disney+</th>
+                    <button type="button">Delete</button>
+                </tr>
+        </table>
+        <form id="movie-add">
+            <h3>Update Movies</h3>
+            <input id="title" placeholder="Title" required />
+            <input id="genre" placeholder="Genre" required />
+            <input id="release-date" placeholder="Release Date" required />
+            <input id="lead-actor" placeholder="Lead Actor" required />
+            <input id="streaming-platform" placeholder="Streaming Platform" required />
+            <button type="submit">Add Movie</button>
+        </form>
+    </main>
+</body>
+</html>

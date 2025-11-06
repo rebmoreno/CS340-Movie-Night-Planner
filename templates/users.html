@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Night Planner</title>
+</head>
+<body>
+    <h1>Movie Night Planner Management System</h1>
+
+    </nav>
+        <a href="/">Home</a> |
+        <a href="/users">Users</a> |
+        <a href="/movies">Movies</a> |
+        <a href="/saved-movies">Saved Movies</a> |
+        <a href="/watched-movies">Watched Movies</a>
+    </nav>
+
+    <main>Users</h2>
+        <table border=1 id="users">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <!-- table for movies data -->
+                <tr>
+                    <th>John Smith</th>
+                    <th>JoSmith@gmail.com</th>
+                    <td><button type="button">Delete</button></td>
+                </tr>
+                <tr>
+                    <th>Jane Doe</th>
+                    <th>JaDoe@gmail.com</th>
+                    <td><button type="button">Delete</button></td>
+                </tr>
+                <tr>
+                    <th>Scarlett Johansson</th>
+                    <th>ScarJo@gmail.com</th>
+                    <td><button type="button">Delete</button></td>
+                </tr>
+        </table>
+        <form id="user-add">
+            <h3>Add User</h3>
+            <input id="name" placeholder="name" required />
+            <input id="email" placeholder="email" required />
+            <button type="submit">Add User</button>
+        </form>
+
+        <form id="user-update">
+            <h3>Update User</h3>
+            <label for="User">Select</label>
+            <select id="User" name="User">
+                <option value="">Please select user</option>
+                <option value="John Smith">John Smith</option>
+                <option value="Jane Doe">Jane Doe</option>
+                <option value="Scarlett Johansson">ScarJo@gmail.com</option></select>
+            <input id="email" placeholder="email" required />
+            <button type="submit">Update User</button>
+        </form>
+    </main>
+</body>
+</html>

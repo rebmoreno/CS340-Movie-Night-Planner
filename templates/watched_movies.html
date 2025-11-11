@@ -4,18 +4,18 @@
     <title>Watched Movies</title>
 </head>
 <body>    
-    <h1>Watched Movies</h1>
+
+        <h1>Watched Movies</h1>
         <nav>
-            <a href="index.html">Home</a> |
-            <a href="users.html">Users</a> |
-            <a href="movies.html">Movies</a> |
-            <a href="saved_movies.html">Saved Movies</a> |
-            <a href="watched_movies.html">Watched Movies</a>
+            <a href="/">Home</a> |
+            <a href="/users">Users</a> |
+            <a href="/movies">Movies</a> |
+            <a href="/saved-movies">Saved Movies</a> |
+            <a href="/watched-movies">Watched Movies</a>
         </nav>
-    <hr>
-    
+
     <h2>All Watched Movies</h2>
-    <table border="1">
+    <table id="saved_movies" border="1">
         <thead>
             <tr>
                 <th>User Name</th>
@@ -51,7 +51,7 @@
     </table>
     
     <h2>Mark Movie as Watched</h2>
-    <form action="/add-watched-movie" method="POST">
+    <form>
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
@@ -78,7 +78,7 @@
     </form>
     
     <h2>Update Watched Date</h2>
-    <form action="/update-watched-movie" method="POST">
+    <form>
         <label>User ID:</label>
         <input type="number" name="userId" required>
         <br><br>
@@ -95,7 +95,7 @@
     </form>
     
     <h2>Remove from Watch History</h2>
-    <form action="/delete-watched-movie" method="POST">
+    <form>
         <label>User ID:</label>
         <input type="number" name="userId" required>
         <br><br>

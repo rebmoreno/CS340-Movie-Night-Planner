@@ -5,15 +5,15 @@
     </head>
 
     <body>
-        <h1>Saved Movies</h1>
+    <h1>Movie Night Planner Management System</h1>
 
-        </nav>
+    </nav>
         <a href="/">Home</a> |
         <a href="/users">Users</a> |
         <a href="/movies">Movies</a> |
         <a href="/saved-movies">Saved Movies</a> |
         <a href="/watched-movies">Watched Movies</a>
-        </nav>
+    </nav>
 
         <hr>
         <table border="1">
@@ -52,7 +52,7 @@
         </table>
 
         <h2>Save a Movie for a User</h2>
-            <form method="POST" action="/save-movie">
+            <form>
             <label>User:</label>
             <select name="userId" required>
                 <option value="">-- Select User --</option>
@@ -78,7 +78,7 @@
             <button type="submit">Save Movie</button>
 
         <h2>Update Saved Date</h2>
-        <form method="POST" action="/update-saved-movie">
+        <form>
             <label>User ID:</label>
             <input type="number" name="userId" required>
             <br><br>
@@ -95,7 +95,7 @@
         </form>
 
         <h2>Remove Saved Movie</h2>
-            <form action="/delete-saved-movie" method="POST">
+            <form>
                 <label>User ID:</label>
                 <input type="number" name="userId" required>
                 <br><br>

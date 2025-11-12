@@ -6,7 +6,7 @@
 <body>
     <h1>Movie Night Planner Management System</h1>
 
-    </nav>
+    <nav>
         <a href="/">Home</a> |
         <a href="/users">Users</a> |
         <a href="/movies">Movies</a> |
@@ -16,50 +16,71 @@
 
     <main>
         <h2>Movies</h2>
-        <table id="movies">
+        <table id="movies" border="1">
             <thead>
                 <tr>
                     <th>Title</th>
                     <th>Genre</th>
                     <th>Release Date</th>
                     <th>Lead Actor</th>
-                    <th>Streaming Platform/th>
+                    <th>Streaming Platform</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
-            <!-- table for movies data -->
+            <tbody>
                 <tr>
-                    <th>A House of Dynamite</th>
-                    <th>Thriller</th>
-                    <th>2025-09-02</th>
-                    <th>Idris Elba</th>
-                    <th>Netflix</th>
-                    <button type="button">Delete</button>
+                    <td>A House of Dynamite</td>
+                    <td>Thriller</td>
+                    <td>2025-09-02</td>
+                    <td>Idris Elba</td>
+                    <td>Netflix</td>
+                    <td><button type="button">Delete</button></td>
                 </tr>
                 <tr>
-                    <th>Wicked</th>
-                    <th>Fantasy</th>
-                    <th>2024-11-22</th>
-                    <th>Cynthia Ervio</th>
-                    <th>Prime Video</th>
-                    <button type="button">Delete</button>
+                    <td>Wicked</td>
+                    <td>Fantasy</td>
+                    <td>2024-11-22</td>
+                    <td>Cynthia Ervio</td>
+                    <td>Prime Video</td>
+                    <td><button type="button">Delete</button></td>
                 </tr>
                 <tr>
-                    <th>The Night Before Christmas</th>
-                    <th>Fantasy</th>
-                    <th>1993-10-29</th>
-                    <th>Bing Crosby</th>
-                    <th>Disney+</th>
-                    <button type="button">Delete</button>
+                    <td>The Night Before Christmas</td>
+                    <td>Fantasy</td>
+                    <td>1993-10-29</td>
+                    <td>Bing Crosby</td>
+                    <td>Disney+</td>
+                    <td><button type="button">Delete</button></td>
                 </tr>
+            </tbody>
         </table>
+
         <form id="movie-add">
-            <h3>Update Movies</h3>
+            <h3>Add a New Movie</h3>
             <input id="title" placeholder="Title" required />
             <input id="genre" placeholder="Genre" required />
-            <input id="release-date" placeholder="Release Date" required />
+            <input id="release-date" type="date" placeholder="Release Date (YYYY-MM-DD)" required />
             <input id="lead-actor" placeholder="Lead Actor" required />
             <input id="streaming-platform" placeholder="Streaming Platform" required />
             <button type="submit">Add Movie</button>
+        </form>
+
+        <form id="movie-update">
+            <h3>Update an Existing Movie</h3>
+            <label for="movie-select">Select Movie:</label>
+            <select id="movie-select" name="movie-select" required>
+                <option value="">-- Select a Movie --</option>
+                <option value="1">A House of Dynamite</option>
+                <option value="2">Wicked</option>
+                <option value="3">The Night Before Christmas</option>
+            </select>
+            <br><br>
+            <input id="update-title" placeholder="New Title" />
+            <input id="update-genre" placeholder="New Genre" />
+            <input id="update-release-date" type="date" placeholder="New Release Date" />
+            <input id="update-lead-actor" placeholder="New Lead Actor" />
+            <input id="update-streaming-platform" placeholder="New Streaming Platform" />
+            <button type="submit">Update Movie</button>
         </form>
     </main>
 </body>

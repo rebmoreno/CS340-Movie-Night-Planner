@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Saved Movies - Movie Night Planner</title>
-    </head>
+<head>
+    <title>Saved Movies - Movie Night Planner</title>
+</head>
 
-    <body>
+<body>
     <h1>Movie Night Planner Management System</h1>
 
-    </nav>
+    <nav>
         <a href="/">Home</a> |
         <a href="/users">Users</a> |
         <a href="/movies">Movies</a> |
@@ -15,96 +15,117 @@
         <a href="/watched-movies">Watched Movies</a>
     </nav>
 
-        <hr>
-        <table border="1">
-            </thead>
-                <tr>
-                    <th>User Name</th>
-                    <th>Movie Title</th>
-                    <th>Genre</th>
-                    <th>Streaming Platform</th>
-                    <th>Saved Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>John Smith</td>
-                    <td>Wicked</td>
-                    <td>Fantasy</td>
-                    <td>Prime Video</td>
-                    <td>2025-03-05</td>
-                </tr>
-                <tr>
-                    <td>Jane Doe</td>
-                    <td>Wicked</td>
-                    <td>Fantasy</td>
-                    <td>Prime Video</td>
-                    <td>2025-05-10</td>
-                </tr>
-                <tr>
-                    <td>John Smith</td>
-                    <td>The Night Before Christmas</td>
-                    <td>Fantasy</td>
-                    <td>Disney+</td>
-                    <td>2025-01-05</td>
-                </tr>
-            </tbody>
-        </table>
+    <h2>Saved Movies</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Movie Title</th>
+                <th>Genre</th>
+                <th>Streaming Platform</th>
+                <th>Saved Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Smith</td>
+                <td>Wicked</td>
+                <td>Fantasy</td>
+                <td>Prime Video</td>
+                <td>2025-03-05</td>
+            </tr>
+            <tr>
+                <td>Jane Doe</td>
+                <td>Wicked</td>
+                <td>Fantasy</td>
+                <td>Prime Video</td>
+                <td>2025-05-10</td>
+            </tr>
+            <tr>
+                <td>John Smith</td>
+                <td>The Night Before Christmas</td>
+                <td>Fantasy</td>
+                <td>Disney+</td>
+                <td>2025-01-05</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <h2>Save a Movie for a User</h2>
-            <form>
-            <label>User:</label>
-            <select name="userId" required>
-                <option value="">-- Select User --</option>
-                <option value="1">1 - John Smith</option>
-                <option value="2">2 - Jane Doe</option>
-                <option value="3">3 - Scarlett Johansson</option>
-            </select>
-            <br><br>
-            
-            <label>Movie:</label>
-            <select name="movieId" required>
-                <option value="">-- Select Movie --</option>
-                <option value="1">1 - A House of Dynamite (Thriller)</option>
-                <option value="2">2 - Wicked (Fantasy)</option>
-                <option value="3">3 - The Night Before Christmas (Fantasy)</option>
-            </select>
-            <br><br>
-            
-            <label>Saved Date (optional, defaults to today):</label>
-            <input type="date" name="saved_date">
-            <br><br>
+    <h2>Save a New Movie for a User</h2>
+    <form>
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
+        </select>
+        <br><br>
+        
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
+        </select>
+        <br><br>
+        
+        <label>Saved Date (optional, defaults to today):</label>
+        <input type="date" name="saved_date">
+        <br><br>
 
-            <button type="submit">Save Movie</button>
+        <button type="submit">Save Movie</button>
+    </form>
 
-        <h2>Update Saved Date</h2>
-        <form>
-            <label>User ID:</label>
-            <input type="number" name="userId" required>
-            <br><br>
-            
-            <label>Movie ID:</label>
-            <input type="number" name="movieId" required>
-            <br><br>
-            
-            <label>New Saved Date:</label>
-            <input type="date" name="saved_date" required>
-            <br><br>
-            
-            <button type="submit">Update Saved Date</button>
-        </form>
+    <h2>Update the Date a Movie Was Saved</h2>
+    <form>
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
+        </select>
+        <br><br>
+        
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
+        </select>
+        <br><br>
+        
+        <label>New Saved Date:</label>
+        <input type="date" name="saved_date" required>
+        <br><br>
+        
+        <button type="submit">Update Saved Date</button>
+    </form>
 
-        <h2>Remove Saved Movie</h2>
-            <form>
-                <label>User ID:</label>
-                <input type="number" name="userId" required>
-                <br><br>
-                
-                <label>Movie ID:</label>
-                <input type="number" name="movieId" required>
-                <br><br>
-                
-                <button type="submit">Remove from Saved List</button>   
-            </form>
-    </body>
+    <h2>Remove a Saved Movie</h2>
+    <form>
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
+        </select>
+        <br><br>
+        
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
+        </select>
+        <br><br>
+        
+        <button type="submit">Remove from Saved List</button>   
+    </form>
+</body>
 </html>

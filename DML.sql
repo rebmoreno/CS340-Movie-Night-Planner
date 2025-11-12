@@ -1,16 +1,25 @@
 --Users table
-SELECT userId, name, email FROM Users
+SELECT userId, name, email FROM Users;
+
+-- get all users for dropdown
+SELECT userId, name FROM Users;
+
 INSERT INTO Users (name, email)
-VALUES (@nameInput, @emailInput)
+VALUES (@nameInput, @emailInput);
+
 UPDATE Users 
-    SET name = @nameInput 
-    AND email = @emailInput 
-    WHERE userId = @userIdInput
+    SET name = @nameInput,
+        email = @emailInput 
+    WHERE userId = @userIdInput;
+
 DELETE FROM Users WHERE userId = @userIdInput;
 
 -- Movies table
 SELECT movieId, title, genre, release_date, lead_actor, streaming_platform 
 FROM Movies;
+
+-- get all movies for dropdown
+SELECT movieId, CONCAT(title, ' (', genre, ')') AS display_name FROM Movies;
 
 INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform)
 VALUES (@titleInput, @genreInput, @release_date_Input, @lead_actor_Input, @streaming_platform_Input);
@@ -30,22 +39,29 @@ WHERE movieId = @movieIdInput;
 SELECT 
     Users.name AS user_name,
     Movies.title AS movie_title,
+    Movies.genre,
+    Movies.streaming_platform,
     SavedMovies.saved_date
 FROM SavedMovies
 INNER JOIN Users ON SavedMovies.userId = Users.userId
-INNER JOIN Movies ON SavedMovies.movieId = Movies.movieId
+INNER JOIN Movies ON SavedMovies.movieId = Movies.movieId;
+
 INSERT INTO SavedMovies (userId, movieId, saved_date)
-VALUES (@userIdInput, @movieIdInput, @savedDateInput)
+VALUES (@userIdInput, @movieIdInput, @savedDateInput);
+
 UPDATE SavedMovies
     SET saved_date = @savedDateInput
     WHERE userId = @userIdInput 
-    AND movieId = @movieIdInput
+    AND movieId = @movieIdInput;
+
 DELETE FROM SavedMovies WHERE userId = @userIdInput AND movieId = @movieIdInput;
 
 -- WatchedMovies table
 SELECT 
     Users.name AS user_name,
     Movies.title AS movie_title,
+    Movies.genre,
+    Movies.streaming_platform,
     WatchedMovies.watched_date
 FROM WatchedMovies
 INNER JOIN Users ON WatchedMovies.userId = Users.userId

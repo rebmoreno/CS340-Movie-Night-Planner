@@ -6,7 +6,7 @@
 <body>
     <h1>Movie Night Planner Management System</h1>
 
-    </nav>
+    <nav>
         <a href="/">Home</a> |
         <a href="/users">Users</a> |
         <a href="/movies">Movies</a> |
@@ -14,8 +14,9 @@
         <a href="/watched-movies">Watched Movies</a>
     </nav>
 
-    <main>Users</h2>
-        <table border=1 id="users">
+    <main>
+        <h2>Users</h2>
+        <table border="1" id="users">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -23,39 +24,44 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-            <!-- table for movies data -->
+            <tbody>
                 <tr>
-                    <th>John Smith</th>
-                    <th>JoSmith@gmail.com</th>
+                    <td>John Smith</td>
+                    <td>JoSmith@gmail.com</td>
                     <td><button type="button">Delete</button></td>
                 </tr>
                 <tr>
-                    <th>Jane Doe</th>
-                    <th>JaDoe@gmail.com</th>
+                    <td>Jane Doe</td>
+                    <td>JaDoe@gmail.com</td>
                     <td><button type="button">Delete</button></td>
                 </tr>
                 <tr>
-                    <th>Scarlett Johansson</th>
-                    <th>ScarJo@gmail.com</th>
+                    <td>Scarlett Johansson</td>
+                    <td>ScarJo@gmail.com</td>
                     <td><button type="button">Delete</button></td>
                 </tr>
+            </tbody>
         </table>
+
         <form id="user-add">
-            <h3>Add User</h3>
-            <input id="name" placeholder="name" required />
-            <input id="email" placeholder="email" required />
+            <h3>Add a New User</h3>
+            <input id="name" placeholder="Name" required />
+            <input id="email" type="email" placeholder="Email" required />
             <button type="submit">Add User</button>
         </form>
 
         <form id="user-update">
-            <h3>Update User</h3>
-            <label for="User">Select</label>
-            <select id="User" name="User">
-                <option value="">Please select user</option>
-                <option value="John Smith">John Smith</option>
-                <option value="Jane Doe">Jane Doe</option>
-                <option value="Scarlett Johansson">ScarJo@gmail.com</option></select>
-            <input id="email" placeholder="email" required />
+            <h3>Update an Existing User</h3>
+            <label for="user-select">Select User:</label>
+            <select id="user-select" name="user-select" required>
+                <option value="">-- Select a User --</option>
+                <option value="1">John Smith</option>
+                <option value="2">Jane Doe</option>
+                <option value="3">Scarlett Johansson</option>
+            </select>
+            <br><br>
+            <input id="update-name" placeholder="New Name" />
+            <input id="update-email" type="email" placeholder="New Email" />
             <button type="submit">Update User</button>
         </form>
     </main>

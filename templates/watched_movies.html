@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Watched Movies</title>
+    <title>Watched Movies - Movie Night Planner</title>
 </head>
-<body>    
+<body>
+    <h1>Movie Night Planner Management System</h1>
 
-        <h1>Watched Movies</h1>
-        <nav>
-            <a href="/">Home</a> |
-            <a href="/users">Users</a> |
-            <a href="/movies">Movies</a> |
-            <a href="/saved-movies">Saved Movies</a> |
-            <a href="/watched-movies">Watched Movies</a>
-        </nav>
+    <nav>
+        <a href="/">Home</a> |
+        <a href="/users">Users</a> |
+        <a href="/movies">Movies</a> |
+        <a href="/saved-movies">Saved Movies</a> |
+        <a href="/watched-movies">Watched Movies</a>
+    </nav>
 
-    <h2>All Watched Movies</h2>
-    <table id="saved_movies" border="1">
+    <h2>Watched Movies</h2>
+    <table id="watched_movies" border="1">
         <thead>
             <tr>
                 <th>User Name</th>
@@ -50,23 +50,23 @@
         </tbody>
     </table>
     
-    <h2>Mark Movie as Watched</h2>
+    <h2>Mark a Movie as Watched</h2>
     <form>
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
-            <option value="1">1 - John Smith</option>
-            <option value="2">2 - Jane Doe</option>
-            <option value="3">3 - Scarlett Johansson</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
         </select>
         <br><br>
         
         <label>Movie:</label>
         <select name="movieId" required>
             <option value="">-- Select Movie --</option>
-            <option value="1">1 - A House of Dynamite (Thriller)</option>
-            <option value="2">2 - Wicked (Fantasy)</option>
-            <option value="3">3 - The Night Before Christmas (Fantasy)</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
         </select>
         <br><br>
         
@@ -77,14 +77,24 @@
         <button type="submit">Mark as Watched</button>
     </form>
     
-    <h2>Update Watched Date</h2>
+    <h2>Update the Date a Movie Was Watched</h2>
     <form>
-        <label>User ID:</label>
-        <input type="number" name="userId" required>
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
+        </select>
         <br><br>
         
-        <label>Movie ID:</label>
-        <input type="number" name="movieId" required>
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
+        </select>
         <br><br>
         
         <label>New Watched Date:</label>
@@ -94,14 +104,24 @@
         <button type="submit">Update Watched Date</button>
     </form>
     
-    <h2>Remove from Watch History</h2>
+    <h2>Remove a Movie from Watch History</h2>
     <form>
-        <label>User ID:</label>
-        <input type="number" name="userId" required>
+        <label>User:</label>
+        <select name="userId" required>
+            <option value="">-- Select User --</option>
+            <option value="1">John Smith</option>
+            <option value="2">Jane Doe</option>
+            <option value="3">Scarlett Johansson</option>
+        </select>
         <br><br>
         
-        <label>Movie ID:</label>
-        <input type="number" name="movieId" required>
+        <label>Movie:</label>
+        <select name="movieId" required>
+            <option value="">-- Select Movie --</option>
+            <option value="1">A House of Dynamite (Thriller)</option>
+            <option value="2">Wicked (Fantasy)</option>
+            <option value="3">The Night Before Christmas (Fantasy)</option>
+        </select>
         <br><br>
         
         <button type="submit">Remove from Watch History</button>

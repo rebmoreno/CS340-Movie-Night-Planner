@@ -1,3 +1,15 @@
+<!--
+    AI Citation: Claude was used to help convert static HTML to Jinja2 templates.
+    
+    Prompt: "My Flask app needs to display database query results in HTML tables and populate 
+    dropdowns dynamically. Show me how to add Jinja2 for loops and variable syntax to my 
+    existing HTML files."
+    
+    What was done: Claude helped us convert hardcoded HTML table rows and dropdown options 
+    into Jinja2 template syntax ({% for %} loops and {{ variable }} placeholders) so that 
+    the pages dynamically display data from our MySQL database instead of static sample data.
+    The original HTML structure, styling, and layout were preserved.
+-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +23,9 @@
         <a href="/users">Users</a> |
         <a href="/movies">Movies</a> |
         <a href="/saved-movies">Saved Movies</a> |
-        <a href="/watched-movies">Watched Movies</a>
+        <a href="/watched-movies">Watched Movies</a> | 
+        <a href="/reset-database" style="color: red;">RESET DATABASE</a> |
+        <a href="/delete-john-demo" style="color: rgb(255, 94, 0);">Delete John Smith (Demo)</a>
     </nav>
 
     <main>
@@ -25,21 +39,13 @@
                 </tr>
             </thead>
             <tbody>
+                {% for user in users %}
                 <tr>
-                    <td>John Smith</td>
-                    <td>JoSmith@gmail.com</td>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
                     <td><button type="button">Delete</button></td>
                 </tr>
-                <tr>
-                    <td>Jane Doe</td>
-                    <td>JaDoe@gmail.com</td>
-                    <td><button type="button">Delete</button></td>
-                </tr>
-                <tr>
-                    <td>Scarlett Johansson</td>
-                    <td>ScarJo@gmail.com</td>
-                    <td><button type="button">Delete</button></td>
-                </tr>
+                {% endfor %}
             </tbody>
         </table>
 
@@ -55,9 +61,9 @@
             <label for="user-select">Select User:</label>
             <select id="user-select" name="user-select" required>
                 <option value="">-- Select a User --</option>
-                <option value="1">John Smith</option>
-                <option value="2">Jane Doe</option>
-                <option value="3">Scarlett Johansson</option>
+                {% for user in users %}
+                <option value="{{ user.userId }}">{{ user.name }}</option>
+                {% endfor %}
             </select>
             <br><br>
             <input id="update-name" placeholder="New Name" />

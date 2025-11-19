@@ -28,12 +28,13 @@ def index():
 @app.route('/reset-database')
 def reset_database():
 
-    cur = mysql.connection.cursor()
-    cur.execute("CALL sp_ResetDatabase();")
-    mysql.connection.commit()
-    
-    print("Database reset successfully")
-    return redirect('/')
+    try: 
+        cur = mysql.connection.cursor()
+        cur.execute("CALL sp_ResetDatabase();")
+        mysql.connection.commit()
+        
+        print("Database reset successfully")
+        return redirect('/')
 
     except Exception as e:
         print(f"Error resetting database: {e}")
@@ -42,12 +43,13 @@ def reset_database():
 @app.route('/delete-john-demo')
 def delete_john_demo():
 
-    cur = mysql.connection.cursor()
-    cur.execute("CALL sp_DeleteJohnSmith();")
-    mysql.connection.commit()
-    
-    print("Deleted John Smith for demo")
-    return redirect('/users')
+    try:
+        cur = mysql.connection.cursor()
+        cur.execute("CALL sp_DeleteJohnSmith();")
+        mysql.connection.commit()
+
+        print("Deleted John Smith for demo")
+        return redirect('/users')
 
     except Exception as e:
         print(f"Error executing demo delete: {e}")
@@ -55,15 +57,52 @@ def delete_john_demo():
 
 @app.route('/users')
 def users():
-    return render_template('users.html')
+
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT userId, name, email FROM Users;")
+    users_data = cur.fetchall()
+    
+    return render_template('users.html', users=users_data)
+
 
 @app.route('/movies')
 def movies():
-    return render_template('movies.html')
+
+    cur = mysql.connection.cursor()
+    query = """SELECT movieId, title, genre, streaming_platform FROM Movies;"""
+    cur.execute(query)
+    movie_data = cur.fetchall()
+
+    return render_template('movies.html', movies=movie_data)
 
 @app.route('/saved-movies')
 def saved_movies():
-    return render_template('saved_movies.html')
+
+    cur = mysql.connection.cursor()
+    query = """
+        SELECT 
+            Users.name AS user_name,
+            Movies.title AS movie_title,
+            Movies.genre,
+            Movies.streaming_platform,
+            SavedMovies.saved_date
+        FROM SavedMovies
+        INNER JOIN Users ON SavedMovies.userId = Users.userId
+        INNER JOIN Movies ON SavedMovies.movieId = Movies.movieId;"""
+
+    cur.execute(query)
+    saved_movies_data = cur.fetchall()
+
+    # Get users for dropdown
+    cur.execute("SELECT userId, name FROM Users;")
+    users_data = cur.fetchall()
+    
+    # Get movies for dropdown
+    cur.execute("SELECT movieId, CONCAT(title, ' (', genre, ')') AS display_name FROM Movies;")
+    movie_data = cur.fetchall()
+
+    return render_template('saved_movies.html', saved_movies=saved_movies_data, users=users_data, movies=movie_data)
+    
 
 @app.route('/watched-movies')
 def watched_movies():
@@ -91,14 +130,11 @@ def watched_movies():
     
     # Get movies for dropdown
     cur.execute("SELECT movieId, CONCAT(title, ' (', genre, ')') AS display_name FROM Movies;")
-    movies_data = cur.fetchall()
+    movie_data = cur.fetchall()
     
     return render_template('watched_movies.html', watched_movies=watched_movies_data,
-                            users=users_data, movies=movies_data)
-    
-    except Exception as e:
-        print(f"Error fetching watched movies: {e}")
-        return "An error occurred while fetching watched movies.", 500
+                            users=users_data, movies=movie_data)
+
 
 # Listener 
 if __name__ == '__main__':

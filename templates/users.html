@@ -43,31 +43,31 @@
                 <tr>
                     <td>{{ user.name }}</td>
                     <td>{{ user.email }}</td>
-                    <td><button type="button">Delete</button></td>
+                    <td><a href="/delete-user/{{ user.userId }}"><button type="button">Delete</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <form id="user-add">
+        <form id="user-add" action="/add-user" method="POST">
             <h3>Add a New User</h3>
-            <input id="name" placeholder="Name" required />
-            <input id="email" type="email" placeholder="Email" required />
+            <input name="name" id="name" placeholder="Name" required />
+            <input name="email" id="email" type="email" placeholder="Email" required />
             <button type="submit">Add User</button>
         </form>
 
-        <form id="user-update">
+        <form id="user-update" action="/update-user" method="POST">
             <h3>Update an Existing User</h3>
             <label for="user-select">Select User:</label>
-            <select id="user-select" name="user-select" required>
+            <select id="user-select" name="userId" required>
                 <option value="">-- Select a User --</option>
                 {% for user in users %}
                 <option value="{{ user.userId }}">{{ user.name }}</option>
                 {% endfor %}
             </select>
             <br><br>
-            <input id="update-name" placeholder="New Name" />
-            <input id="update-email" type="email" placeholder="New Email" />
+            <input name="name" id="update-name" placeholder="New Name" required />
+            <input name="email" id="update-email" type="email" placeholder="New Email" required />
             <button type="submit">Update User</button>
         </form>
     </main>

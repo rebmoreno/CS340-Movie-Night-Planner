@@ -49,37 +49,37 @@
                     <td>{{ movie.release_date if movie.release_date else 'N/A' }}</td>
                     <td>{{ movie.lead_actor if movie.lead_actor else 'N/A' }}</td>
                     <td>{{ movie.streaming_platform if movie.streaming_platform else 'N/A' }}</td>
-                    <td><button type="button">Delete</button></td>
+                    <td><a href="/delete-movie/{{ movie.movieId }}"><button type="button">Delete</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <form id="movie-add">
+        <form id="movie-add" action="/add-movie" method="POST">
             <h3>Add a New Movie</h3>
-            <input id="title" placeholder="Title" required />
-            <input id="genre" placeholder="Genre" required />
-            <input id="release-date" type="date" placeholder="Release Date (YYYY-MM-DD)" required />
-            <input id="lead-actor" placeholder="Lead Actor" required />
-            <input id="streaming-platform" placeholder="Streaming Platform" required />
+            <input name="title" id="title" placeholder="Title" required />
+            <input name="genre" id="genre" placeholder="Genre" required />
+            <input name="release_date" id="release-date" type="date" placeholder="Release Date (YYYY-MM-DD)" />
+            <input name="lead_actor" id="lead-actor" placeholder="Lead Actor" />
+            <input name="streaming_platform" id="streaming-platform" placeholder="Streaming Platform" />
             <button type="submit">Add Movie</button>
         </form>
 
-        <form id="movie-update">
+        <form id="movie-update" action="/update-movie" method="POST">
             <h3>Update an Existing Movie</h3>
             <label for="movie-select">Select Movie:</label>
-            <select id="movie-select" name="movie-select" required>
+            <select id="movie-select" name="movieId" required>
                 <option value="">-- Select a Movie --</option>
                 {% for movie in movies %}
                 <option value="{{ movie.movieId }}">{{ movie.title }}</option>
                 {% endfor %}
             </select>
             <br><br>
-            <input id="update-title" placeholder="New Title" />
-            <input id="update-genre" placeholder="New Genre" />
-            <input id="update-release-date" type="date" placeholder="New Release Date" />
-            <input id="update-lead-actor" placeholder="New Lead Actor" />
-            <input id="update-streaming-platform" placeholder="New Streaming Platform" />
+            <input name="title" id="update-title" placeholder="New Title" required />
+            <input name="genre" id="update-genre" placeholder="New Genre" required />
+            <input name="release_date" id="update-release-date" type="date" placeholder="New Release Date" />
+            <input name="lead_actor" id="update-lead-actor" placeholder="New Lead Actor" />
+            <input name="streaming_platform" id="update-streaming-platform" placeholder="New Streaming Platform" />
             <button type="submit">Update Movie</button>
         </form>
     </main>

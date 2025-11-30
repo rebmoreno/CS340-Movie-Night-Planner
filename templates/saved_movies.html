@@ -54,7 +54,7 @@
     </table>
 
     <h2>Save a New Movie for a User</h2>
-    <form>
+    <form action="/add-saved-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
@@ -81,7 +81,7 @@
     </form>
 
     <h2>Update the Date a Movie Was Saved</h2>
-    <form>
+    <form action="/update-saved-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
@@ -108,7 +108,7 @@
     </form>
 
     <h2>Remove a Saved Movie</h2>
-    <form>
+    <form action="/delete-saved-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>

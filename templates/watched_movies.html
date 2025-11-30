@@ -53,7 +53,7 @@
     </table>
     
     <h2>Mark a Movie as Watched</h2>
-    <form>
+    <form action="/add-watched-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
@@ -80,7 +80,7 @@
     </form>
     
     <h2>Update the Date a Movie Was Watched</h2>
-    <form>
+    <form action="/update-watched-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>
@@ -107,7 +107,7 @@
     </form>
     
     <h2>Remove a Movie from Watch History</h2>
-    <form>
+    <form action="/delete-watched-movie" method="POST">
         <label>User:</label>
         <select name="userId" required>
             <option value="">-- Select User --</option>

@@ -64,6 +64,58 @@ def users():
     
     return render_template('users.html', users=users_data)
 
+@app.route('/add-user', methods=['POST'])
+def add_user():
+    try:
+        name = request.form['name']
+        email = request.form['email']
+        
+        cur = mysql.connection.cursor()
+        query = "INSERT INTO Users (name, email) VALUES (%s, %s);"
+        cur.execute(query, (name, email))
+        mysql.connection.commit()
+        
+        print(f"Added user: {name}")
+        return redirect('/users')
+    
+    except Exception as e:
+        print(f"Error adding user: {e}")
+        return "An error occurred while adding the user.", 500
+
+@app.route('/update-user', methods=['POST'])
+def update_user():
+    try:
+        user_id = request.form['userId']
+        name = request.form['name']
+        email = request.form['email']
+        
+        cur = mysql.connection.cursor()
+        query = "UPDATE Users SET name = %s, email = %s WHERE userId = %s;"
+        cur.execute(query, (name, email, user_id))
+        mysql.connection.commit()
+        
+        print(f"Updated user ID {user_id}")
+        return redirect('/users')
+    
+    except Exception as e:
+        print(f"Error updating user: {e}")
+        return "An error occurred while updating the user.", 500
+
+@app.route('/delete-user/<int:user_id>')
+def delete_user(user_id):
+    try:
+        cur = mysql.connection.cursor()
+        query = "DELETE FROM Users WHERE userId = %s;"
+        cur.execute(query, (user_id,))
+        mysql.connection.commit()
+        
+        print(f"Deleted user ID {user_id}")
+        return redirect('/users')
+    
+    except Exception as e:
+        print(f"Error deleting user: {e}")
+        return "An error occurred while deleting the user.", 500
+
 
 @app.route('/movies')
 def movies():
@@ -74,6 +126,34 @@ def movies():
     movie_data = cur.fetchall()
 
     return render_template('movies.html', movies=movie_data)
+
+@app.route('/add-movie', methods=['POST'])
+def add_movie():
+    try:
+    
+    
+    except Exception as e:
+        print(f"Error adding movie: {e}")
+        return "An error occurred while adding the movie.", 500
+
+@app.route('/update-movie', methods=['POST'])
+def update_movie():
+    try:
+        
+        
+
+    except Exception as e:
+        print(f"Error updating movie: {e}")
+        return "An error occurred while updating the movie.", 500
+
+@app.route('/delete-movie/<int:movie_id>')
+def delete_movie(movie_id):
+    try:
+
+    
+    except Exception as e:
+        print(f"Error deleting movie: {e}")
+        return "An error occurred while deleting the movie.", 500
 
 @app.route('/saved-movies')
 def saved_movies():
@@ -102,6 +182,66 @@ def saved_movies():
     movie_data = cur.fetchall()
 
     return render_template('saved_movies.html', saved_movies=saved_movies_data, users=users_data, movies=movie_data)
+
+@app.route('/add-saved-movie', methods=['POST'])
+def add_saved_movie():
+    try:
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        saved_date = request.form.get('saved_date') or None
+        
+        cur = mysql.connection.cursor()
+        if saved_date:
+            query = "INSERT INTO SavedMovies (userId, movieId, saved_date) VALUES (%s, %s, %s);"
+            cur.execute(query, (user_id, movie_id, saved_date))
+        else:
+            query = "INSERT INTO SavedMovies (userId, movieId) VALUES (%s, %s);"
+            cur.execute(query, (user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Added saved movie: User {user_id}, Movie {movie_id}")
+        return redirect('/saved-movies')
+    
+    except Exception as e:
+        print(f"Error adding saved movie: {e}")
+        return "An error occurred while adding the saved movie.", 500
+
+@app.route('/update-saved-movie', methods=['POST'])
+def update_saved_movie():
+    try:
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        saved_date = request.form['saved_date']
+        
+        cur = mysql.connection.cursor()
+        query = "UPDATE SavedMovies SET saved_date = %s WHERE userId = %s AND movieId = %s;"
+        cur.execute(query, (saved_date, user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Updated saved movie: User {user_id}, Movie {movie_id}")
+        return redirect('/saved-movies')
+    
+    except Exception as e:
+        print(f"Error updating saved movie: {e}")
+        return "An error occurred while updating the saved movie.", 500
+
+@app.route('/delete-saved-movie', methods=['POST'])
+def delete_saved_movie():
+    try:
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        
+        cur = mysql.connection.cursor()
+        query = "DELETE FROM SavedMovies WHERE userId = %s AND movieId = %s;"
+        cur.execute(query, (user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Deleted saved movie: User {user_id}, Movie {movie_id}")
+        return redirect('/saved-movies')
+    
+    except Exception as e:
+        print(f"Error deleting saved movie: {e}")
+        return "An error occurred while deleting the saved movie.", 500
     
 
 @app.route('/watched-movies')
@@ -134,6 +274,33 @@ def watched_movies():
     
     return render_template('watched_movies.html', watched_movies=watched_movies_data,
                             users=users_data, movies=movie_data)
+
+@app.route('/add-watched-movie', methods=['POST'])
+def add_watched_movie():
+    try:
+
+    
+    except Exception as e:
+        print(f"Error adding watched movie: {e}")
+        return "An error occurred while adding the watched movie.", 500
+
+@app.route('/update-watched-movie', methods=['POST'])
+def update_watched_movie():
+    try:
+
+    
+    except Exception as e:
+        print(f"Error updating watched movie: {e}")
+        return "An error occurred while updating the watched movie.", 500
+
+@app.route('/delete-watched-movie', methods=['POST'])
+def delete_watched_movie():
+    try:
+
+    
+    except Exception as e:
+        print(f"Error deleting watched movie: {e}")
+        return "An error occurred while deleting the watched movie.", 500
 
 
 # Listener 

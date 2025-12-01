@@ -130,7 +130,20 @@ def movies():
 @app.route('/add-movie', methods=['POST'])
 def add_movie():
     try:
-    
+        title = request.form['title']
+        genre = request.form['genre']
+        release_date = request.form.get('release_date') or None
+        lead_actor = request.form.get('lead_actor') or None
+        streaming_platform = request.form.get('streaming_platform') or None
+        
+        cur = mysql.connection.cursor()
+        query = """INSERT INTO Movies (title, genre, release_date, lead_actor, streaming_platform) 
+                   VALUES (%s, %s, %s, %s, %s);"""
+        cur.execute(query, (title, genre, release_date, lead_actor, streaming_platform))
+        mysql.connection.commit()
+        
+        print(f"Added movie: {title}")
+        return redirect('/movies')
     
     except Exception as e:
         print(f"Error adding movie: {e}")
@@ -139,9 +152,24 @@ def add_movie():
 @app.route('/update-movie', methods=['POST'])
 def update_movie():
     try:
+        movie_id = request.form['movieId']
+        title = request.form['title']
+        genre = request.form['genre']
+        release_date = request.form.get('release_date') or None
+        lead_actor = request.form.get('lead_actor') or None
+        streaming_platform = request.form.get('streaming_platform') or None
         
+        cur = mysql.connection.cursor()
+        query = """UPDATE Movies 
+                   SET title = %s, genre = %s, release_date = %s, 
+                       lead_actor = %s, streaming_platform = %s 
+                   WHERE movieId = %s;"""
+        cur.execute(query, (title, genre, release_date, lead_actor, streaming_platform, movie_id))
+        mysql.connection.commit()
         
-
+        print(f"Updated movie ID {movie_id}")
+        return redirect('/movies')
+    
     except Exception as e:
         print(f"Error updating movie: {e}")
         return "An error occurred while updating the movie.", 500
@@ -149,7 +177,13 @@ def update_movie():
 @app.route('/delete-movie/<int:movie_id>')
 def delete_movie(movie_id):
     try:
-
+        cur = mysql.connection.cursor()
+        query = "DELETE FROM Movies WHERE movieId = %s;"
+        cur.execute(query, (movie_id,))
+        mysql.connection.commit()
+        
+        print(f"Deleted movie ID {movie_id}")
+        return redirect('/movies')
     
     except Exception as e:
         print(f"Error deleting movie: {e}")
@@ -278,7 +312,21 @@ def watched_movies():
 @app.route('/add-watched-movie', methods=['POST'])
 def add_watched_movie():
     try:
-
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        watched_date = request.form.get('watched_date') or None
+        
+        cur = mysql.connection.cursor()
+        if watched_date:
+            query = "INSERT INTO WatchedMovies (userId, movieId, watched_date) VALUES (%s, %s, %s);"
+            cur.execute(query, (user_id, movie_id, watched_date))
+        else:
+            query = "INSERT INTO WatchedMovies (userId, movieId) VALUES (%s, %s);"
+            cur.execute(query, (user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Added watched movie: User {user_id}, Movie {movie_id}")
+        return redirect('/watched-movies')
     
     except Exception as e:
         print(f"Error adding watched movie: {e}")
@@ -287,7 +335,17 @@ def add_watched_movie():
 @app.route('/update-watched-movie', methods=['POST'])
 def update_watched_movie():
     try:
-
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        watched_date = request.form['watched_date']
+        
+        cur = mysql.connection.cursor()
+        query = "UPDATE WatchedMovies SET watched_date = %s WHERE userId = %s AND movieId = %s;"
+        cur.execute(query, (watched_date, user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Updated watched movie: User {user_id}, Movie {movie_id}")
+        return redirect('/watched-movies')
     
     except Exception as e:
         print(f"Error updating watched movie: {e}")
@@ -296,7 +354,16 @@ def update_watched_movie():
 @app.route('/delete-watched-movie', methods=['POST'])
 def delete_watched_movie():
     try:
-
+        user_id = request.form['userId']
+        movie_id = request.form['movieId']
+        
+        cur = mysql.connection.cursor()
+        query = "DELETE FROM WatchedMovies WHERE userId = %s AND movieId = %s;"
+        cur.execute(query, (user_id, movie_id))
+        mysql.connection.commit()
+        
+        print(f"Deleted watched movie: User {user_id}, Movie {movie_id}")
+        return redirect('/watched-movies')
     
     except Exception as e:
         print(f"Error deleting watched movie: {e}")

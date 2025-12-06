@@ -121,7 +121,7 @@ def delete_user(user_id):
 def movies():
 
     cur = mysql.connection.cursor()
-    query = """SELECT movieId, title, genre, streaming_platform FROM Movies;"""
+    query = """SELECT movieId, title, genre, release_date, lead_actor, streaming_platform FROM Movies;"""
     cur.execute(query)
     movie_data = cur.fetchall()
 

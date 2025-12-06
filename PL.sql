@@ -98,3 +98,47 @@ BEGIN
     DELETE FROM Users WHERE name = 'John Smith' AND email = 'JoSmith@gmail.com';
 END //
 DELIMITER ;
+
+-- CREATE/INSERT STORED PROCEDURE
+-- Add a new user to the Users table
+DROP PROCEDURE IF EXISTS sp_AddUser;
+
+DELIMITER //
+CREATE PROCEDURE sp_AddUser(
+    IN p_name VARCHAR(100),
+    IN p_email VARCHAR(255)
+)
+BEGIN
+    INSERT INTO Users (name, email) VALUES (p_name, p_email);
+END //
+DELIMITER ;
+
+-- UPDATE STORED PROCEDURE
+-- Update an existing user's information
+DROP PROCEDURE IF EXISTS sp_UpdateUser;
+
+DELIMITER //
+CREATE PROCEDURE sp_UpdateUser(
+    IN p_userId INT,
+    IN p_name VARCHAR(100),
+    IN p_email VARCHAR(255)
+)
+BEGIN
+    UPDATE Users 
+    SET name = p_name, email = p_email 
+    WHERE userId = p_userId;
+END //
+DELIMITER ;
+
+-- DELETE STORED PROCEDURE
+-- Delete a user (will cascade to SavedMovies and WatchedMovies)
+DROP PROCEDURE IF EXISTS sp_DeleteUser;
+
+DELIMITER //
+CREATE PROCEDURE sp_DeleteUser(
+    IN p_userId INT
+)
+BEGIN
+    DELETE FROM Users WHERE userId = p_userId;
+END //
+DELIMITER ;

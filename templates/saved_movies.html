@@ -37,6 +37,7 @@
                 <th>Genre</th>
                 <th>Streaming Platform</th>
                 <th>Saved Date</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -47,6 +48,7 @@
                 <td>{{ saved.genre if saved.genre else 'N/A' }}</td>
                 <td>{{ saved.streaming_platform if saved.streaming_platform else 'N/A' }}</td>
                 <td>{{ saved.saved_date }}</td>
+                <td><a href="/delete-saved-movie/{{ saved.userId }}/{{ saved.movieId }}"><button type="button">Delete</button></a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -104,29 +106,6 @@
         <br><br>
         
         <button type="submit">Update Saved Date</button>
-    </form>
-
-    <h2>Remove a Saved Movie</h2>
-    <form action="/delete-saved-movie" method="POST">
-        <label>User:</label>
-        <select name="userId" required>
-            <option value="">-- Select User --</option>
-            {% for user in users %}
-            <option value="{{ user.userId }}">{{ user.name }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        
-        <label>Movie:</label>
-        <select name="movieId" required>
-            <option value="">-- Select Movie --</option>
-            {% for movie in movies %}
-            <option value="{{ movie.movieId }}">{{ movie.display_name }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        
-        <button type="submit">Remove from Saved List</button>   
     </form>
 </body>
 </html>

@@ -36,6 +36,7 @@
                 <th>Genre</th>
                 <th>Streaming Platform</th>
                 <th>Watched Date</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -46,6 +47,7 @@
                 <td>{{ watched.genre if watched.genre else 'N/A' }}</td>
                 <td>{{ watched.streaming_platform if watched.streaming_platform else 'N/A' }}</td>
                 <td>{{ watched.watched_date }}</td>
+                <td><a href="/delete-watched-movie/{{ watched.userId }}/{{ watched.movieId }}"><button type="button">Delete</button></a></td>
             </tr>
             {% endfor %}
         </tbody>
@@ -103,29 +105,6 @@
         <br><br>
         
         <button type="submit">Update Watched Date</button>
-    </form>
-    
-    <h2>Remove a Movie from Watch History</h2>
-    <form action="/delete-watched-movie" method="POST">
-        <label>User:</label>
-        <select name="userId" required>
-            <option value="">-- Select User --</option>
-            {% for user in users %}
-            <option value="{{ user.userId }}">{{ user.name }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        
-        <label>Movie:</label>
-        <select name="movieId" required>
-            <option value="">-- Select Movie --</option>
-            {% for movie in movies %}
-            <option value="{{ movie.movieId }}">{{ movie.display_name }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        
-        <button type="submit">Remove from Watch History</button>
     </form>
 </body>
 </html>

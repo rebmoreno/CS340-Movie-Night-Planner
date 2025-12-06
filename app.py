@@ -3,6 +3,11 @@
 # Main Flask application
 #
 # Citation: Structure based on CS340 Flask starter code and Activity 2 tutorial
+# Date: Fall 2025
+# Originality: Based on CS340 Flask starter app structure. Core routing and 
+# database connection setup adapted from starter code. CRUD operations, stored 
+# procedure calls, and junction table handling are our original work.
+# AI Usage: No AI tools were used in developing this application code.
 
 from flask import Flask, render_template, request, redirect
 from flask_mysqldb import MySQL
@@ -71,8 +76,8 @@ def add_user():
         email = request.form['email']
         
         cur = mysql.connection.cursor()
-        query = "INSERT INTO Users (name, email) VALUES (%s, %s);"
-        cur.execute(query, (name, email))
+        # Using stored procedure for INSERT operation
+        cur.execute("CALL sp_AddUser(%s, %s);", (name, email))
         mysql.connection.commit()
         
         print(f"Added user: {name}")
@@ -90,8 +95,8 @@ def update_user():
         email = request.form['email']
         
         cur = mysql.connection.cursor()
-        query = "UPDATE Users SET name = %s, email = %s WHERE userId = %s;"
-        cur.execute(query, (name, email, user_id))
+        # Using stored procedure for UPDATE operation
+        cur.execute("CALL sp_UpdateUser(%s, %s, %s);", (user_id, name, email))
         mysql.connection.commit()
         
         print(f"Updated user ID {user_id}")
@@ -105,8 +110,8 @@ def update_user():
 def delete_user(user_id):
     try:
         cur = mysql.connection.cursor()
-        query = "DELETE FROM Users WHERE userId = %s;"
-        cur.execute(query, (user_id,))
+        # Using stored procedure for DELETE operation
+        cur.execute("CALL sp_DeleteUser(%s);", (user_id,))
         mysql.connection.commit()
         
         print(f"Deleted user ID {user_id}")
@@ -195,6 +200,8 @@ def saved_movies():
     cur = mysql.connection.cursor()
     query = """
         SELECT 
+            SavedMovies.userId,
+            SavedMovies.movieId,
             Users.name AS user_name,
             Movies.title AS movie_title,
             Movies.genre,
@@ -259,12 +266,9 @@ def update_saved_movie():
         print(f"Error updating saved movie: {e}")
         return "An error occurred while updating the saved movie.", 500
 
-@app.route('/delete-saved-movie', methods=['POST'])
-def delete_saved_movie():
+@app.route('/delete-saved-movie/<int:user_id>/<int:movie_id>')
+def delete_saved_movie(user_id, movie_id):
     try:
-        user_id = request.form['userId']
-        movie_id = request.form['movieId']
-        
         cur = mysql.connection.cursor()
         query = "DELETE FROM SavedMovies WHERE userId = %s AND movieId = %s;"
         cur.execute(query, (user_id, movie_id))
@@ -286,6 +290,8 @@ def watched_movies():
     # Get watched movies with JOIN
     query = """
         SELECT 
+            WatchedMovies.userId,
+            WatchedMovies.movieId,
             Users.name AS user_name,
             Movies.title AS movie_title,
             Movies.genre,
@@ -351,12 +357,9 @@ def update_watched_movie():
         print(f"Error updating watched movie: {e}")
         return "An error occurred while updating the watched movie.", 500
 
-@app.route('/delete-watched-movie', methods=['POST'])
-def delete_watched_movie():
+@app.route('/delete-watched-movie/<int:user_id>/<int:movie_id>')
+def delete_watched_movie(user_id, movie_id):
     try:
-        user_id = request.form['userId']
-        movie_id = request.form['movieId']
-        
         cur = mysql.connection.cursor()
         query = "DELETE FROM WatchedMovies WHERE userId = %s AND movieId = %s;"
         cur.execute(query, (user_id, movie_id))

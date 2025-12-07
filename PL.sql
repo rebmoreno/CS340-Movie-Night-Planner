@@ -2,6 +2,8 @@
 -- Movie Night Planner Management System
 -- PL/SQL Stored Procedures
 -- Citation: Structure based on sp_moviedb.sql example from CS340 course materials
+-- Originality: 
+-- AI Usage: No AI tools were used in developing this application code.
 
 -- RESET DATABASE STORED PROCEDURE
 DROP PROCEDURE IF EXISTS sp_ResetDatabase;

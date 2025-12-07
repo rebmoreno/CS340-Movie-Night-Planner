@@ -1,3 +1,10 @@
+-- Group 64: Rebeca Moreno Rodriguez, Prisha Velhal
+-- Movie Night Planner Management System
+-- CS340 Portfolio Project - Fall 2025
+-- Data Definition Language (DDL)
+--
+-- Citation: Table structure syntax based on CS340 course examples
+
 --Users table
 SELECT userId, name, email FROM Users;
 

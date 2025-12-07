@@ -3,7 +3,6 @@
 # Main Flask application
 #
 # Citation: Structure based on CS340 Flask starter code and Activity 2 tutorial
-# Date: Fall 2025
 # Originality: Based on CS340 Flask starter app structure. Core routing and 
 # database connection setup adapted from starter code. CRUD operations, stored 
 # procedure calls, and junction table handling are our original work.

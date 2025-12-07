@@ -4,6 +4,8 @@
 -- Data Definition Language (DDL)
 --
 -- Citation: Table structure syntax based on CS340 course examples
+-- Originality: 
+-- AI Usage: No AI tools were used in developing this application code.
 
 --Users table
 SELECT userId, name, email FROM Users;

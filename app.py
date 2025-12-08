@@ -17,9 +17,9 @@ app = Flask(__name__)
 
 # Database configuration 
 app.config['MYSQL_HOST'] = 'classmysql.engr.oregonstate.edu'
-app.config['MYSQL_USER'] = 'cs340_morenreb'        
-app.config['MYSQL_PASSWORD'] = 'r7QWXdLO6Atd'      
-app.config['MYSQL_DB'] = 'cs340_morenreb'          
+app.config['MYSQL_USER'] = 'REDACTED'        
+app.config['MYSQL_PASSWORD'] = 'REDACTED'      
+app.config['MYSQL_DB'] = 'REDACTED'          
 app.config['MYSQL_CURSORCLASS'] = "DictCursor"
 
 mysql = MySQL(app)

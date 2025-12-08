@@ -3,10 +3,11 @@
 -- PL/SQL Stored Procedures
 -- Citation: Structure based on sp_moviedb.sql example from CS340 course materials
 -- Originality: 
--- All table schemas (Users, Movies, SavedMovies, WatchedMovies)
--- All foreign key relationships and CASCADE operations
--- All sample data
--- All JOIN queries for M:N relationships
+-- sp_ResetDatabase - Database recreation logic and sample data specific to Movie Night Planner
+-- sp_DeleteJohnSmith - Demonstrates CASCADE delete functionality
+-- sp_AddUser - INSERT operation for Users table
+-- sp_UpdateUser - UPDATE operation for Users table
+-- sp_DeleteUser - DELETE operation with CASCADE to junction tables
 -- AI Usage: No AI tools were used in developing this application code.
 
 -- RESET DATABASE STORED PROCEDURE

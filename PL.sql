@@ -3,6 +3,10 @@
 -- PL/SQL Stored Procedures
 -- Citation: Structure based on sp_moviedb.sql example from CS340 course materials
 -- Originality: 
+-- All table schemas (Users, Movies, SavedMovies, WatchedMovies)
+-- All foreign key relationships and CASCADE operations
+-- All sample data
+-- All JOIN queries for M:N relationships
 -- AI Usage: No AI tools were used in developing this application code.
 
 -- RESET DATABASE STORED PROCEDURE

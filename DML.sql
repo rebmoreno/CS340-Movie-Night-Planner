@@ -5,6 +5,11 @@
 --
 -- Citation: Table structure syntax based on CS340 course examples
 -- Originality: 
+-- All table schemas (Users, Movies, SavedMovies, WatchedMovies)
+-- All foreign key relationships and CASCADE operations
+-- All sample data
+-- All JOIN queries for M:N relationships
+-- Dropdown population queries using CONCAT
 -- AI Usage: No AI tools were used in developing this application code.
 
 --Users table
